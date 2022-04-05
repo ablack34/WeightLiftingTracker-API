@@ -38,7 +38,7 @@ namespace TrackerAPI.Controllers
 
             if(result == null)
             {
-                return NotFound("Exercise not found.");
+                return NotFound();
             }
 
             return Ok(result);
@@ -56,7 +56,7 @@ namespace TrackerAPI.Controllers
 
             await _exerciseRepository.UpdateExercise(id, exercise);
 
-            return Accepted("Exercise updated.");
+            return Accepted();
         }
 
         // POST: api/Exercises
@@ -64,8 +64,12 @@ namespace TrackerAPI.Controllers
         [HttpPost]
         public async Task<ActionResult<Exercise>> CreateExercise([FromBody]Exercise exercise)
         {
-            //Should there be a bad request option here??
-            
+            //Should there be a bad request option here if a validation rule prevents post??
+            if (exercise == null)
+            {
+                return BadRequest();
+            }
+
             var createdExercise = await _exerciseRepository.AddExercise(exercise);
 
             return CreatedAtAction(nameof(GetExercise), new { id = createdExercise.ExerciseId }, createdExercise);
@@ -80,12 +84,12 @@ namespace TrackerAPI.Controllers
 
             if (exercise == null)
             {
-                return NotFound("Exercise not found.");
+                return NotFound();
             }
 
             var result = await _exerciseRepository.DeleteExercise(id);
 
-            return Ok();
+            return NoContent();
         }
 
     }

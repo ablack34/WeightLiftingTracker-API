@@ -11,7 +11,7 @@ namespace API.SpecflowTests.Helpers
     {
         public static async Task<string> GetBodyAsString(this HttpResponseMessage httpResponseMessage)
         {
-            string responseBodyAsString = await httpResponseMessage.Content.ReadAsStringAsync();
+            string responseBodyAsString = await httpResponseMessage.Content.ReadAsStringAsync().ConfigureAwait(false);
 
             return responseBodyAsString;
         }
