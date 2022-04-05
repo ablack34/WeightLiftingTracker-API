@@ -108,7 +108,7 @@ namespace TrackerAPI.Test
 
             //Assert
             //Testing return value is correct
-            var actionValue = Assert.IsType<NotFoundObjectResult>(result.Result);
+            var actionValue = Assert.IsType<NotFoundResult>(result.Result);
         }
 
 

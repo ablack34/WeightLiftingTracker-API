@@ -7,13 +7,14 @@ using API.SpecflowTests.Contexts;
 using System.Net;
 using TrackerAPI.Models;
 using API.SpecflowTests.Helpers;
+using System.Text;
 
 namespace API.SpecflowTests.StepDefinitions
 {
     [Binding]
     public class GetExerciseByIdStepDefinitions
     {
-        //Should this be a new "Test" context or context from Project?
+        
         private TestExerciseContext _context;
 
         public GetExerciseByIdStepDefinitions(TestExerciseContext context)
@@ -28,19 +29,30 @@ namespace API.SpecflowTests.StepDefinitions
         }
 
         [When(@"I send a '([^']*)' request to '([^']*)' endpoint")]
-        public async void WhenISendARequestToEndpoint(HttpMethod method, Uri uri)
+        public async Task WhenISendARequestToEndpoint(HttpMethod method, Uri uri)
         {
             HttpRequestMessage request = new HttpRequestMessage(method, uri);
-            try
-            {
-                var test = await _context!.HttpClient!.SendAsync(request);
-            }
-            catch (Exception ex)
-            {
 
-            }
             _context!.LastHttpResponseMessage = await _context!.HttpClient!.SendAsync(request);
         }
+
+        [When(@"I send a '([^']*)' request to '([^']*)' endpoint with payload")]
+        public async Task WhenISendARequestToEndpointWithPayload(HttpMethod method, Uri uri, string payload)
+        {
+            HttpRequestMessage request = new HttpRequestMessage(method, uri)
+            {
+                Content = new StringContent(payload, encoding: Encoding.UTF8, mediaType: "application/json")
+            };
+
+            _context!.LastHttpResponseMessage = await _context!.HttpClient!.SendAsync(request);
+        }
+
+        [When(@"I send a '([^']*)' request to location of last response")]
+        public async Task WhenISendARequestToLocationOfLastResponse(HttpMethod method)
+        {
+            await WhenISendARequestToEndpoint(method, new Uri(_context!.LastHttpResponseMessageLocationHeaderValue!));
+        }
+
 
         [Then(@"A '([^']*)' response is returned")]
         public void ThenAResponseIsReturned(HttpStatusCode expectedhttpStatusCode)
@@ -48,8 +60,8 @@ namespace API.SpecflowTests.StepDefinitions
             _context!.LastHttpResponseMessage!.StatusCode.Should().Be(expectedhttpStatusCode);
         }
 
-        [Then(@"A '([^']*)' restaurant details are retrieved")]
-        public async void ThenARestaurantDetailsAreRetrieved(string expectedExerciseName)
+        [Then(@"A '([^']*)' exercise details are retrieved")]
+        public async Task ThenAExerciseDetailsAreRetrieved(string expectedExerciseName)
         {
             Exercise exerciseResult = await _context!.LastHttpResponseMessage!.GetBodyAs<Exercise>();
 
@@ -58,11 +70,35 @@ namespace API.SpecflowTests.StepDefinitions
         }
 
         [Then(@"The response should contain '([^']*)'")]
-        public async void ThenTheResponseShouldContain(string expectedResponseText)
+        public async Task ThenTheResponseShouldContain(string expectedResponseText)
         {
             string responseBody = await _context!.LastHttpResponseMessage!.GetBodyAsString();
 
-            responseBody.Should().Be(expectedResponseText);
+            responseBody.Should().Contain(expectedResponseText);
         }
+
+        [Then(@"A list of exercises is retrieved")]
+        public async Task ThenAListOfExercisesIsRetrieved()
+        {
+            List<Exercise> listOfExercises = await _context!.LastHttpResponseMessage!.GetBodyAs<List<Exercise>>();
+
+            listOfExercises.Should().NotBeNull();
+        }
+
+        [Then(@"A response should contain the '([^']*)' header")]
+        public void ThenAResponseShouldContainTheHeader(string targetHeaderName)
+        {
+            var headers = _context!.LastHttpResponseMessage!.Headers.ToDictionary(x => x.Key, x => x.Value.FirstOrDefault());
+
+            var targetHeader = headers.FirstOrDefault(x => x.Key.Equals(targetHeaderName)).Value;
+
+            targetHeader.Should().NotBeNull();
+
+            _context!.LastHttpResponseMessageLocationHeaderValue = targetHeader;
+
+        }
+
+
+
     }
 }

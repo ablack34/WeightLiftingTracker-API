@@ -1,22 +1,21 @@
-﻿Feature: GetExerciseById
+﻿Feature: GetAllExercises
 
 	As a user of the TrackerAPI
-	I want to be able to get an Exercise
-	So that I can see my lifting stats
+	I want to be able to get a list of Exercises
+	So that I can see what exercises there are 
 
 Background: 
 	Given We are running the API with Sample Data
 
 @getPositiveScenario
-Scenario: Get an Exercise by a valid ID
+Scenario: Get a list of Exercises
 	When I send a 'GET' request to '<EndpointUrl>' endpoint
 	Then A '<ResponseCode>' response is returned
-	And A '<ExerciseName>' exercise details are retrieved
+	And A list of exercises is retrieved
 
 Examples: 
-	| EndpointUrl         | ResponseCode | ExerciseName |
-	| /api/Exercises/1009 | 200          | KB Swing     |
-	| /api/Exercises/1008 | 200          | Lunge        |
+	| EndpointUrl         | ResponseCode |
+	| /api/Exercises/     | 200          |
 
 @getNegativeScenario
 Scenario: Get an Exercise by a invalid ID

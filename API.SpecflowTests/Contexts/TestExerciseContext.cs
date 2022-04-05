@@ -12,6 +12,7 @@ namespace API.SpecflowTests.Contexts
 
         public HttpResponseMessage? LastHttpResponseMessage { get; set; }
 
+        //why is this in context??
         public string? LastHttpResponseMessageLocationHeaderValue { get; set; }
     }
 }
