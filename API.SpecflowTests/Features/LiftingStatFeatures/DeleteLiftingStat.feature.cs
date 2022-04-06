@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace API.SpecflowTests.Features
+namespace API.SpecflowTests.Features.LiftingStatFeatures
 {
     using TechTalk.SpecFlow;
     using System;
@@ -29,7 +29,7 @@ namespace API.SpecflowTests.Features
         
         private static string[] featureTags = ((string[])(null));
         
-#line 1 "DeleteExerciseById.feature"
+#line 1 "DeleteLiftingStat.feature"
 #line hidden
         
         public virtual Microsoft.VisualStudio.TestTools.UnitTesting.TestContext TestContext
@@ -48,8 +48,8 @@ namespace API.SpecflowTests.Features
         public static void FeatureSetup(Microsoft.VisualStudio.TestTools.UnitTesting.TestContext testContext)
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Features", "DeleteExerciseById", "\tAs a user of the TrackerAPI\r\n\tI want to be able to delete an Exercise\r\n\tSo that " +
-                    "I will have an up to date database", ProgrammingLanguage.CSharp, featureTags);
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Features/LiftingStatFeatures", "DeleteExerciseById", "\tAs a user of the TrackerAPI\r\n\tI want to be able to delete a lifting stat\r\n\tSo th" +
+                    "at I will have an up to date database", ProgrammingLanguage.CSharp, featureTags);
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -66,7 +66,7 @@ namespace API.SpecflowTests.Features
             if (((testRunner.FeatureContext != null) 
                         && (testRunner.FeatureContext.FeatureInfo.Title != "DeleteExerciseById")))
             {
-                global::API.SpecflowTests.Features.DeleteExerciseByIdFeature.FeatureSetup(null);
+                global::API.SpecflowTests.Features.LiftingStatFeatures.DeleteExerciseByIdFeature.FeatureSetup(null);
             }
         }
         
@@ -101,7 +101,7 @@ namespace API.SpecflowTests.Features
 #line hidden
         }
         
-        public virtual void DeleteAnExerciseByAValidID(string endpointUrl, string responseCode, string[] exampleTags)
+        public virtual void DeleteALiftingStatByAValidID(string endpointUrl, string responseCode, string[] exampleTags)
         {
             string[] @__tags = new string[] {
                     "getPositiveScenario"};
@@ -113,7 +113,7 @@ namespace API.SpecflowTests.Features
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             argumentsOfScenario.Add("EndpointUrl", endpointUrl);
             argumentsOfScenario.Add("ResponseCode", responseCode);
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Delete an Exercise by a valid ID", null, tagsOfScenario, argumentsOfScenario, featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Delete a lifting stat by a valid ID", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 11
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -138,34 +138,20 @@ this.FeatureBackground();
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Delete an Exercise by a valid ID: /api/Exercises/1011")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Delete a lifting stat by a valid ID: /api/LiftingStats/35")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "DeleteExerciseById")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("getPositiveScenario")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "/api/Exercises/1011")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:EndpointUrl", "/api/Exercises/1011")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "/api/LiftingStats/35")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:EndpointUrl", "/api/LiftingStats/35")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:ResponseCode", "204")]
-        public void DeleteAnExerciseByAValidID_ApiExercises1011()
+        public void DeleteALiftingStatByAValidID_ApiLiftingStats35()
         {
 #line 11
-this.DeleteAnExerciseByAValidID("/api/Exercises/1011", "204", ((string[])(null)));
+this.DeleteALiftingStatByAValidID("/api/LiftingStats/35", "204", ((string[])(null)));
 #line hidden
         }
         
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Delete an Exercise by a valid ID: /api/Exercises/1012")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "DeleteExerciseById")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("getPositiveScenario")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "/api/Exercises/1012")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:EndpointUrl", "/api/Exercises/1012")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:ResponseCode", "204")]
-        public void DeleteAnExerciseByAValidID_ApiExercises1012()
-        {
-#line 11
-this.DeleteAnExerciseByAValidID("/api/Exercises/1012", "204", ((string[])(null)));
-#line hidden
-        }
-        
-        public virtual void DeleteAnExerciseByAInvalidID(string endpointUrl, string responseCode, string responseText, string[] exampleTags)
+        public virtual void DeleteALiftingStatByAInvalidID(string endpointUrl, string responseCode, string responseText, string[] exampleTags)
         {
             string[] @__tags = new string[] {
                     "getNegativeScenario"};
@@ -178,7 +164,7 @@ this.DeleteAnExerciseByAValidID("/api/Exercises/1012", "204", ((string[])(null))
             argumentsOfScenario.Add("EndpointUrl", endpointUrl);
             argumentsOfScenario.Add("ResponseCode", responseCode);
             argumentsOfScenario.Add("ResponseText", responseText);
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Delete an Exercise by a invalid ID", null, tagsOfScenario, argumentsOfScenario, featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Delete a lifting stat by a invalid ID", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 21
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -206,32 +192,32 @@ this.FeatureBackground();
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Delete an Exercise by a invalid ID: api/Exercises/111")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Delete a lifting stat by a invalid ID: api/LiftingStats/111")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "DeleteExerciseById")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("getNegativeScenario")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "api/Exercises/111")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:EndpointUrl", "api/Exercises/111")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "api/LiftingStats/111")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:EndpointUrl", "api/LiftingStats/111")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:ResponseCode", "404")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:ResponseText", "Not Found")]
-        public void DeleteAnExerciseByAInvalidID_ApiExercises111()
+        public void DeleteALiftingStatByAInvalidID_ApiLiftingStats111()
         {
 #line 21
-this.DeleteAnExerciseByAInvalidID("api/Exercises/111", "404", "Not Found", ((string[])(null)));
+this.DeleteALiftingStatByAInvalidID("api/LiftingStats/111", "404", "Not Found", ((string[])(null)));
 #line hidden
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Delete an Exercise by a invalid ID: api/Exercises/null")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Delete a lifting stat by a invalid ID: api/LiftingStats/string")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "DeleteExerciseById")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("getNegativeScenario")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "api/Exercises/null")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:EndpointUrl", "api/Exercises/null")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "api/LiftingStats/string")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:EndpointUrl", "api/LiftingStats/string")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:ResponseCode", "400")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:ResponseText", "One or more validation errors occurred")]
-        public void DeleteAnExerciseByAInvalidID_ApiExercisesNull()
+        public void DeleteALiftingStatByAInvalidID_ApiLiftingStatsString()
         {
 #line 21
-this.DeleteAnExerciseByAInvalidID("api/Exercises/null", "400", "One or more validation errors occurred", ((string[])(null)));
+this.DeleteALiftingStatByAInvalidID("api/LiftingStats/string", "400", "One or more validation errors occurred", ((string[])(null)));
 #line hidden
         }
     }

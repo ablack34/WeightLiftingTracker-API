@@ -25,21 +25,21 @@ namespace TrackerAPI.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<LiftingStat>>> GetLiftingStats()
         {
-            return await _context.LiftingStats.ToListAsync();
+            var LiftingStatList = await _context.LiftingStats.ToListAsync();
+            return Ok(LiftingStatList);
         }
 
         // GET: api/LiftingStats/5
         [HttpGet("{id}")]
         public async Task<ActionResult<LiftingStat>> GetLiftingStat(int id)
         {
-            var liftingStat = await _context.LiftingStats.FindAsync(id);
+            var result = await _context.LiftingStats.FindAsync(id);
 
-            if (liftingStat == null)
+            if (result == null)
             {
                 return NotFound();
             }
-
-            return liftingStat;
+            return Ok(result);
         }
 
         // PUT: api/LiftingStats/5
@@ -70,7 +70,7 @@ namespace TrackerAPI.Controllers
                 }
             }
 
-            return NoContent();
+            return Accepted();
         }
 
         // POST: api/LiftingStats
@@ -89,6 +89,7 @@ namespace TrackerAPI.Controllers
         public async Task<IActionResult> DeleteLiftingStat(int id)
         {
             var liftingStat = await _context.LiftingStats.FindAsync(id);
+            
             if (liftingStat == null)
             {
                 return NotFound();

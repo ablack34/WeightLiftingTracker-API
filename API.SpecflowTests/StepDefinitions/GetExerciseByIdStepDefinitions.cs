@@ -69,6 +69,24 @@ namespace API.SpecflowTests.StepDefinitions
             exerciseResult.Name.Should().Be(expectedExerciseName);
         }
 
+        [Then(@"A '([^']*)' exerciseId are retrieved")]
+        public async Task ThenAExerciseIdAreRetrieved(int expectedExerciseId)
+        {
+            LiftingStat liftingStatResult = await _context!.LastHttpResponseMessage!.GetBodyAs<LiftingStat>();
+
+            liftingStatResult.ExerciseId.Should().Be(expectedExerciseId);
+        }
+
+
+        [Then(@"A list of lifting stats is retrieved")]
+        public async Task ThenAListOfLiftingStatsIsRetrieved()
+        {
+            List<LiftingStat> listOfExercises = await _context!.LastHttpResponseMessage!.GetBodyAs<List<LiftingStat>>();
+
+            listOfExercises.Should().NotBeNull();
+        }
+
+
         [Then(@"The response should contain '([^']*)'")]
         public async Task ThenTheResponseShouldContain(string expectedResponseText)
         {

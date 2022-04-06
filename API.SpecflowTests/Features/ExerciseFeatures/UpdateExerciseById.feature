@@ -1,8 +1,8 @@
 ﻿Feature: UpdateExerciseById
 
 	As a user of the TrackerAPI
-	I want to be able to get an Exercise
-	So that I can see my lifting stats
+	I want to be able to update an exercise
+	So that I can see my ensure an accurate DB record 
 
 Background: 
 	Given We are running the API with Sample Data

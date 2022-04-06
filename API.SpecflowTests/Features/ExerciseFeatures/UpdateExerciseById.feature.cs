@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace API.SpecflowTests.Features
+namespace API.SpecflowTests.Features.ExerciseFeatures
 {
     using TechTalk.SpecFlow;
     using System;
@@ -48,8 +48,8 @@ namespace API.SpecflowTests.Features
         public static void FeatureSetup(Microsoft.VisualStudio.TestTools.UnitTesting.TestContext testContext)
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Features", "UpdateExerciseById", "\tAs a user of the TrackerAPI\r\n\tI want to be able to get an Exercise\r\n\tSo that I c" +
-                    "an see my lifting stats", ProgrammingLanguage.CSharp, featureTags);
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Features/ExerciseFeatures", "UpdateExerciseById", "\tAs a user of the TrackerAPI\r\n\tI want to be able to update an exercise\r\n\tSo that " +
+                    "I can see my ensure an accurate DB record ", ProgrammingLanguage.CSharp, featureTags);
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -66,7 +66,7 @@ namespace API.SpecflowTests.Features
             if (((testRunner.FeatureContext != null) 
                         && (testRunner.FeatureContext.FeatureInfo.Title != "UpdateExerciseById")))
             {
-                global::API.SpecflowTests.Features.UpdateExerciseByIdFeature.FeatureSetup(null);
+                global::API.SpecflowTests.Features.ExerciseFeatures.UpdateExerciseByIdFeature.FeatureSetup(null);
             }
         }
         

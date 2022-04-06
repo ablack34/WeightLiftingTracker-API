@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace API.SpecflowTests.Features
+namespace API.SpecflowTests.Features.LiftingStatFeatures
 {
     using TechTalk.SpecFlow;
     using System;
@@ -20,7 +20,7 @@ namespace API.SpecflowTests.Features
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.9.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [Microsoft.VisualStudio.TestTools.UnitTesting.TestClassAttribute()]
-    public partial class CreateAnExerciseFeature
+    public partial class CreateALiftingStatFeature
     {
         
         private static TechTalk.SpecFlow.ITestRunner testRunner;
@@ -29,7 +29,7 @@ namespace API.SpecflowTests.Features
         
         private static string[] featureTags = ((string[])(null));
         
-#line 1 "CreateAnExercise.feature"
+#line 1 "CreateLiftingStat.feature"
 #line hidden
         
         public virtual Microsoft.VisualStudio.TestTools.UnitTesting.TestContext TestContext
@@ -48,8 +48,8 @@ namespace API.SpecflowTests.Features
         public static void FeatureSetup(Microsoft.VisualStudio.TestTools.UnitTesting.TestContext testContext)
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Features", "CreateAnExercise", "\tAs a user of the TrackerAPI\r\n\tI want to be able to create an Exercise\r\n\tSo that " +
-                    "I can add new exercises to track", ProgrammingLanguage.CSharp, featureTags);
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Features/LiftingStatFeatures", "CreateALiftingStat", "\tAs a user of the TrackerAPI\r\n\tI want to be able to create a lifting stat\r\n\tSo th" +
+                    "at I can add new lifting stats for an exercise to track", ProgrammingLanguage.CSharp, featureTags);
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -64,9 +64,9 @@ namespace API.SpecflowTests.Features
         public void TestInitialize()
         {
             if (((testRunner.FeatureContext != null) 
-                        && (testRunner.FeatureContext.FeatureInfo.Title != "CreateAnExercise")))
+                        && (testRunner.FeatureContext.FeatureInfo.Title != "CreateALiftingStat")))
             {
-                global::API.SpecflowTests.Features.CreateAnExerciseFeature.FeatureSetup(null);
+                global::API.SpecflowTests.Features.LiftingStatFeatures.CreateALiftingStatFeature.FeatureSetup(null);
             }
         }
         
@@ -101,7 +101,7 @@ namespace API.SpecflowTests.Features
 #line hidden
         }
         
-        public virtual void CreateANewExercise(string endpointUrl, string responseCode, string getResponseCode, string getExerciseName, string[] exampleTags)
+        public virtual void CreateANewLiftingStat(string endpointUrl, string responseCode, string getResponseCode, string getExerciseId, string[] exampleTags)
         {
             string[] @__tags = new string[] {
                     "createPositiveScenario"};
@@ -114,8 +114,8 @@ namespace API.SpecflowTests.Features
             argumentsOfScenario.Add("EndpointUrl", endpointUrl);
             argumentsOfScenario.Add("ResponseCode", responseCode);
             argumentsOfScenario.Add("GetResponseCode", getResponseCode);
-            argumentsOfScenario.Add("GetExerciseName", getExerciseName);
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Create a new exercise", null, tagsOfScenario, argumentsOfScenario, featureTags);
+            argumentsOfScenario.Add("GetExerciseId", getExerciseId);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Create a new lifting stat", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 11
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -130,46 +130,45 @@ this.ScenarioInitialize(scenarioInfo);
 this.FeatureBackground();
 #line hidden
 #line 12
- testRunner.When(string.Format("I send a \'POST\' request to \'{0}\' endpoint with payload", endpointUrl), "{\r\n  \"exerciseId\": 0,\r\n  \"name\": \"Push Press\",\r\n  \"stats\": [\r\n\t{\r\n\t  \"liftingStat" +
-                        "Id\": 0,\r\n\t  \"date\": \"2022-04-05\",\r\n\t  \"weight\": 100,\r\n\t  \"repetitions\": 3,\r\n\t  \"" +
-                        "exerciseId\": 0\r\n\t}\r\n  ]\r\n}", ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When(string.Format("I send a \'POST\' request to \'{0}\' endpoint with payload", endpointUrl), "{\r\n\t\"liftingStatId\": 0,\r\n\t\"date\": \"2022-04-05\",\r\n\t\"weight\": 20,\r\n\t\"repetitions\": " +
+                        "10,\r\n\t\"exerciseId\": 1008\r\n}", ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 28
+#line 22
  testRunner.Then(string.Format("A \'{0}\' response is returned", responseCode), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 29
+#line 23
  testRunner.And("A response should contain the \'Location\' header", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 32
+#line 26
  testRunner.When("I send a \'GET\' request to location of last response", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 33
+#line 27
  testRunner.Then(string.Format("A \'{0}\' response is returned", getResponseCode), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 34
- testRunner.And(string.Format("A \'{0}\' exercise details are retrieved", getExerciseName), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 28
+ testRunner.And(string.Format("A \'{0}\' exerciseId are retrieved", getExerciseId), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Create a new exercise: /api/Exercises/")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "CreateAnExercise")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Create a new lifting stat: /api/LiftingStats/")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "CreateALiftingStat")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("createPositiveScenario")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "/api/Exercises/")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:EndpointUrl", "/api/Exercises/")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "/api/LiftingStats/")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:EndpointUrl", "/api/LiftingStats/")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:ResponseCode", "201")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:GetResponseCode", "200")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:GetExerciseName", "Push Press")]
-        public void CreateANewExercise_ApiExercises()
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:GetExerciseId", "1008")]
+        public void CreateANewLiftingStat_ApiLiftingStats()
         {
 #line 11
-this.CreateANewExercise("/api/Exercises/", "201", "200", "Push Press", ((string[])(null)));
+this.CreateANewLiftingStat("/api/LiftingStats/", "201", "200", "1008", ((string[])(null)));
 #line hidden
         }
         
-        public virtual void PostAnExerciseWithInvalidPayload(string endpointUrl, string responseCode, string[] exampleTags)
+        public virtual void PostALiftingStatWithInvalidPayload(string endpointUrl, string responseCode, string[] exampleTags)
         {
             string[] @__tags = new string[] {
                     "createNegativeScenario"};
@@ -181,8 +180,8 @@ this.CreateANewExercise("/api/Exercises/", "201", "200", "Push Press", ((string[
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             argumentsOfScenario.Add("EndpointUrl", endpointUrl);
             argumentsOfScenario.Add("ResponseCode", responseCode);
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Post an Exercise with invalid payload", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 44
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Post a lifting stat with invalid payload", null, tagsOfScenario, argumentsOfScenario, featureTags);
+#line 38
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -195,10 +194,10 @@ this.ScenarioInitialize(scenarioInfo);
 #line 7
 this.FeatureBackground();
 #line hidden
-#line 45
+#line 39
  testRunner.When(string.Format("I send a \'POST\' request to \'{0}\' endpoint with payload", endpointUrl), "", ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 49
+#line 43
  testRunner.Then(string.Format("A \'{0}\' response is returned", responseCode), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
@@ -206,27 +205,27 @@ this.FeatureBackground();
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Post an Exercise with invalid payload: api/Exercises/")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "CreateAnExercise")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Post a lifting stat with invalid payload: api/LiftingStats/")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "CreateALiftingStat")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("createNegativeScenario")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "api/Exercises/")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:EndpointUrl", "api/Exercises/")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "api/LiftingStats/")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:EndpointUrl", "api/LiftingStats/")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:ResponseCode", "400")]
-        public void PostAnExerciseWithInvalidPayload_ApiExercises()
+        public void PostALiftingStatWithInvalidPayload_ApiLiftingStats()
         {
-#line 44
-this.PostAnExerciseWithInvalidPayload("api/Exercises/", "400", ((string[])(null)));
+#line 38
+this.PostALiftingStatWithInvalidPayload("api/LiftingStats/", "400", ((string[])(null)));
 #line hidden
         }
         
-        public virtual void PostAnExerciseToAnInvalidRoute(string endpointUrl, string responseCode, string[] exampleTags)
+        public virtual void PostALiftingStatToAnInvalidRoute(string endpointUrl, string responseCode, string[] exampleTags)
         {
             string[] tagsOfScenario = exampleTags;
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             argumentsOfScenario.Add("EndpointUrl", endpointUrl);
             argumentsOfScenario.Add("ResponseCode", responseCode);
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Post an Exercise to an invalid route", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 56
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Post a lifting stat to an invalid route", null, tagsOfScenario, argumentsOfScenario, featureTags);
+#line 50
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -239,12 +238,11 @@ this.ScenarioInitialize(scenarioInfo);
 #line 7
 this.FeatureBackground();
 #line hidden
-#line 57
- testRunner.When(string.Format("I send a \'POST\' request to \'{0}\' endpoint with payload", endpointUrl), "{\r\n  \"exerciseId\": 0,\r\n  \"name\": \"Clean\",\r\n  \"stats\": [\r\n\t{\r\n\t  \"liftingStatId\": " +
-                        "0,\r\n\t  \"date\": \"2022-04-05\",\r\n\t  \"weight\": 100,\r\n\t  \"repetitions\": 3,\r\n\t  \"exerc" +
-                        "iseId\": 0\r\n\t}\r\n  ]\r\n}", ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 51
+ testRunner.When(string.Format("I send a \'POST\' request to \'{0}\' endpoint with payload", endpointUrl), "{\r\n\t\"liftingStatId\": 0,\r\n\t\"date\": \"2022-04-05\",\r\n\t\"weight\": 20,\r\n\t\"repetitions\": " +
+                        "10,\r\n\t\"exerciseId\": 1008\r\n}", ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 73
+#line 61
  testRunner.Then(string.Format("A \'{0}\' response is returned", responseCode), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
@@ -252,40 +250,40 @@ this.FeatureBackground();
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Post an Exercise to an invalid route: api/Exercises/string")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "CreateAnExercise")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "api/Exercises/string")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:EndpointUrl", "api/Exercises/string")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Post a lifting stat to an invalid route: api/LiftingStats/string")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "CreateALiftingStat")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "api/LiftingStats/string")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:EndpointUrl", "api/LiftingStats/string")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:ResponseCode", "405")]
-        public void PostAnExerciseToAnInvalidRoute_ApiExercisesString()
+        public void PostALiftingStatToAnInvalidRoute_ApiLiftingStatsString()
         {
-#line 56
-this.PostAnExerciseToAnInvalidRoute("api/Exercises/string", "405", ((string[])(null)));
+#line 50
+this.PostALiftingStatToAnInvalidRoute("api/LiftingStats/string", "405", ((string[])(null)));
 #line hidden
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Post an Exercise to an invalid route: api/Exercises/111")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "CreateAnExercise")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "api/Exercises/111")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:EndpointUrl", "api/Exercises/111")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Post a lifting stat to an invalid route: api/LiftingStats/111")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "CreateALiftingStat")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "api/LiftingStats/111")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:EndpointUrl", "api/LiftingStats/111")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:ResponseCode", "405")]
-        public void PostAnExerciseToAnInvalidRoute_ApiExercises111()
+        public void PostALiftingStatToAnInvalidRoute_ApiLiftingStats111()
         {
-#line 56
-this.PostAnExerciseToAnInvalidRoute("api/Exercises/111", "405", ((string[])(null)));
+#line 50
+this.PostALiftingStatToAnInvalidRoute("api/LiftingStats/111", "405", ((string[])(null)));
 #line hidden
         }
         
-        public virtual void PostAnExerciseWithAValidationErrors(string endpointUrl, string responseCode, string responseText, string[] exampleTags)
+        public virtual void PostALiftingStatWithAValidationErrors(string endpointUrl, string responseCode, string responseText, string[] exampleTags)
         {
             string[] tagsOfScenario = exampleTags;
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             argumentsOfScenario.Add("EndpointUrl", endpointUrl);
             argumentsOfScenario.Add("ResponseCode", responseCode);
             argumentsOfScenario.Add("ResponseText", responseText);
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Post an Exercise with a validation errors", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 81
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Post a lifting stat with a validation errors", null, tagsOfScenario, argumentsOfScenario, featureTags);
+#line 69
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -298,15 +296,14 @@ this.ScenarioInitialize(scenarioInfo);
 #line 7
 this.FeatureBackground();
 #line hidden
-#line 82
- testRunner.When(string.Format("I send a \'POST\' request to \'{0}\' endpoint with payload", endpointUrl), "{\r\n  \"exerciseId\": 0,\r\n  \"name\": \"Clean\",\r\n  \"stats\": [\r\n\t{\r\n\t  \"liftingStatId\": " +
-                        "0,\r\n\t  \"date\": \"2022-04-05\",\r\n\t  \"weight\": \"INVALID_DATA\",\r\n\t  \"repetitions\": 3," +
-                        "\r\n\t  \"exerciseId\": 0\r\n\t}\r\n  ]\r\n}", ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 70
+ testRunner.When(string.Format("I send a \'POST\' request to \'{0}\' endpoint with payload", endpointUrl), "{\r\n\t\"liftingStatId\": 0,\r\n\t\"date\": \"2022-04-05\",\r\n\t\"weight\": \"INVALID_DATA\",\r\n\t\"re" +
+                        "petitions\": \"INVALID_DATA\",\r\n\t\"exerciseId\": 1008\r\n}", ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 98
+#line 80
  testRunner.Then(string.Format("A \'{0}\' response is returned", responseCode), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 99
+#line 81
  testRunner.And(string.Format("The response should contain \'{0}\'", responseText), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
@@ -314,16 +311,16 @@ this.FeatureBackground();
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Post an Exercise with a validation errors: api/Exercises/")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "CreateAnExercise")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "api/Exercises/")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:EndpointUrl", "api/Exercises/")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Post a lifting stat with a validation errors: api/LiftingStats/")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "CreateALiftingStat")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "api/LiftingStats/")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:EndpointUrl", "api/LiftingStats/")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:ResponseCode", "400")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:ResponseText", "One or more validation errors occurred")]
-        public void PostAnExerciseWithAValidationErrors_ApiExercises()
+        public void PostALiftingStatWithAValidationErrors_ApiLiftingStats()
         {
-#line 81
-this.PostAnExerciseWithAValidationErrors("api/Exercises/", "400", "One or more validation errors occurred", ((string[])(null)));
+#line 69
+this.PostALiftingStatWithAValidationErrors("api/LiftingStats/", "400", "One or more validation errors occurred", ((string[])(null)));
 #line hidden
         }
     }

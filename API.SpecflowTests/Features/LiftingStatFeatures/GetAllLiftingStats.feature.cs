@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace API.SpecflowTests.Features
+namespace API.SpecflowTests.Features.LiftingStatFeatures
 {
     using TechTalk.SpecFlow;
     using System;
@@ -20,7 +20,7 @@ namespace API.SpecflowTests.Features
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.9.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [Microsoft.VisualStudio.TestTools.UnitTesting.TestClassAttribute()]
-    public partial class GetExerciseByIdFeature
+    public partial class GetAllLiftingStatsFeature
     {
         
         private static TechTalk.SpecFlow.ITestRunner testRunner;
@@ -29,7 +29,7 @@ namespace API.SpecflowTests.Features
         
         private static string[] featureTags = ((string[])(null));
         
-#line 1 "GetExerciseById.feature"
+#line 1 "GetAllLiftingStats.feature"
 #line hidden
         
         public virtual Microsoft.VisualStudio.TestTools.UnitTesting.TestContext TestContext
@@ -48,8 +48,8 @@ namespace API.SpecflowTests.Features
         public static void FeatureSetup(Microsoft.VisualStudio.TestTools.UnitTesting.TestContext testContext)
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Features", "GetExerciseById", "\tAs a user of the TrackerAPI\r\n\tI want to be able to get an Exercise\r\n\tSo that I c" +
-                    "an see my lifting stats", ProgrammingLanguage.CSharp, featureTags);
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Features/LiftingStatFeatures", "GetAllLiftingStats", "\tAs a user of the TrackerAPI\r\n\tI want to be able to get a list of Lifting Stats\r\n" +
+                    "\tSo that I can see all my lifting stats ", ProgrammingLanguage.CSharp, featureTags);
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -64,9 +64,9 @@ namespace API.SpecflowTests.Features
         public void TestInitialize()
         {
             if (((testRunner.FeatureContext != null) 
-                        && (testRunner.FeatureContext.FeatureInfo.Title != "GetExerciseById")))
+                        && (testRunner.FeatureContext.FeatureInfo.Title != "GetAllLiftingStats")))
             {
-                global::API.SpecflowTests.Features.GetExerciseByIdFeature.FeatureSetup(null);
+                global::API.SpecflowTests.Features.LiftingStatFeatures.GetAllLiftingStatsFeature.FeatureSetup(null);
             }
         }
         
@@ -101,7 +101,7 @@ namespace API.SpecflowTests.Features
 #line hidden
         }
         
-        public virtual void GetAnExerciseByAValidID(string endpointUrl, string responseCode, string exerciseName, string[] exampleTags)
+        public virtual void GetAListOfLiftingStats(string endpointUrl, string responseCode, string[] exampleTags)
         {
             string[] @__tags = new string[] {
                     "getPositiveScenario"};
@@ -113,8 +113,7 @@ namespace API.SpecflowTests.Features
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             argumentsOfScenario.Add("EndpointUrl", endpointUrl);
             argumentsOfScenario.Add("ResponseCode", responseCode);
-            argumentsOfScenario.Add("ExerciseName", exerciseName);
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Get an Exercise by a valid ID", null, tagsOfScenario, argumentsOfScenario, featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Get a list of Lifting Stats", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 11
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -135,39 +134,23 @@ this.FeatureBackground();
  testRunner.Then(string.Format("A \'{0}\' response is returned", responseCode), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 14
- testRunner.And(string.Format("A \'{0}\' exercise details are retrieved", exerciseName), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("A list of lifting stats is retrieved", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Get an Exercise by a valid ID: /api/Exercises/1009")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "GetExerciseById")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Get a list of Lifting Stats: /api/LiftingStats/")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "GetAllLiftingStats")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("getPositiveScenario")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "/api/Exercises/1009")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:EndpointUrl", "/api/Exercises/1009")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "/api/LiftingStats/")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:EndpointUrl", "/api/LiftingStats/")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:ResponseCode", "200")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:ExerciseName", "KB Swing")]
-        public void GetAnExerciseByAValidID_ApiExercises1009()
+        public void GetAListOfLiftingStats_ApiLiftingStats()
         {
 #line 11
-this.GetAnExerciseByAValidID("/api/Exercises/1009", "200", "KB Swing", ((string[])(null)));
-#line hidden
-        }
-        
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Get an Exercise by a valid ID: /api/Exercises/1008")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "GetExerciseById")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("getPositiveScenario")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "/api/Exercises/1008")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:EndpointUrl", "/api/Exercises/1008")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:ResponseCode", "200")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:ExerciseName", "Lunge")]
-        public void GetAnExerciseByAValidID_ApiExercises1008()
-        {
-#line 11
-this.GetAnExerciseByAValidID("/api/Exercises/1008", "200", "Lunge", ((string[])(null)));
+this.GetAListOfLiftingStats("/api/LiftingStats/", "200", ((string[])(null)));
 #line hidden
         }
         
@@ -185,7 +168,7 @@ this.GetAnExerciseByAValidID("/api/Exercises/1008", "200", "Lunge", ((string[])(
             argumentsOfScenario.Add("ResponseCode", responseCode);
             argumentsOfScenario.Add("ResponseText", responseText);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Get an Exercise by a invalid ID", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 22
+#line 21
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -198,13 +181,13 @@ this.ScenarioInitialize(scenarioInfo);
 #line 7
 this.FeatureBackground();
 #line hidden
-#line 23
+#line 22
  testRunner.When(string.Format("I send a \'GET\' request to \'{0}\' endpoint", endpointUrl), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 24
+#line 23
  testRunner.Then(string.Format("A \'{0}\' response is returned", responseCode), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 25
+#line 24
  testRunner.And(string.Format("The response should contain \'{0}\'", responseText), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
@@ -212,32 +195,32 @@ this.FeatureBackground();
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Get an Exercise by a invalid ID: api/Exercises/111")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "GetExerciseById")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Get an Exercise by a invalid ID: api/LiftingStats/111")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "GetAllLiftingStats")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("getNegativeScenario")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "api/Exercises/111")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:EndpointUrl", "api/Exercises/111")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "api/LiftingStats/111")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:EndpointUrl", "api/LiftingStats/111")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:ResponseCode", "404")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:ResponseText", "Not Found")]
-        public void GetAnExerciseByAInvalidID_ApiExercises111()
+        public void GetAnExerciseByAInvalidID_ApiLiftingStats111()
         {
-#line 22
-this.GetAnExerciseByAInvalidID("api/Exercises/111", "404", "Not Found", ((string[])(null)));
+#line 21
+this.GetAnExerciseByAInvalidID("api/LiftingStats/111", "404", "Not Found", ((string[])(null)));
 #line hidden
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Get an Exercise by a invalid ID: api/Exercises/null")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "GetExerciseById")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Get an Exercise by a invalid ID: api/LiftingStats/string")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "GetAllLiftingStats")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("getNegativeScenario")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "api/Exercises/null")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:EndpointUrl", "api/Exercises/null")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "api/LiftingStats/string")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:EndpointUrl", "api/LiftingStats/string")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:ResponseCode", "400")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:ResponseText", "One or more validation errors occurred")]
-        public void GetAnExerciseByAInvalidID_ApiExercisesNull()
+        public void GetAnExerciseByAInvalidID_ApiLiftingStatsString()
         {
-#line 22
-this.GetAnExerciseByAInvalidID("api/Exercises/null", "400", "One or more validation errors occurred", ((string[])(null)));
+#line 21
+this.GetAnExerciseByAInvalidID("api/LiftingStats/string", "400", "One or more validation errors occurred", ((string[])(null)));
 #line hidden
         }
     }

@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace API.SpecflowTests.Features
+namespace API.SpecflowTests.Features.ExerciseFeatures
 {
     using TechTalk.SpecFlow;
     using System;
@@ -48,7 +48,7 @@ namespace API.SpecflowTests.Features
         public static void FeatureSetup(Microsoft.VisualStudio.TestTools.UnitTesting.TestContext testContext)
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Features", "GetAllExercises", "\tAs a user of the TrackerAPI\r\n\tI want to be able to get a list of Exercises\r\n\tSo " +
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Features/ExerciseFeatures", "GetAllExercises", "\tAs a user of the TrackerAPI\r\n\tI want to be able to get a list of Exercises\r\n\tSo " +
                     "that I can see what exercises there are ", ProgrammingLanguage.CSharp, featureTags);
             testRunner.OnFeatureStart(featureInfo);
         }
@@ -66,7 +66,7 @@ namespace API.SpecflowTests.Features
             if (((testRunner.FeatureContext != null) 
                         && (testRunner.FeatureContext.FeatureInfo.Title != "GetAllExercises")))
             {
-                global::API.SpecflowTests.Features.GetAllExercisesFeature.FeatureSetup(null);
+                global::API.SpecflowTests.Features.ExerciseFeatures.GetAllExercisesFeature.FeatureSetup(null);
             }
         }
         
