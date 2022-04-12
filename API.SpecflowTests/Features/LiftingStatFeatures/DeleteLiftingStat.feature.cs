@@ -101,7 +101,7 @@ namespace API.SpecflowTests.Features.LiftingStatFeatures
 #line hidden
         }
         
-        public virtual void DeleteALiftingStatByAValidID(string endpointUrl, string responseCode, string[] exampleTags)
+        public virtual void DeleteALiftingStatByAValidID(string endpointUrl, string responseCode, string getResponseCode, string getExerciseId, string[] exampleTags)
         {
             string[] @__tags = new string[] {
                     "getPositiveScenario"};
@@ -113,6 +113,8 @@ namespace API.SpecflowTests.Features.LiftingStatFeatures
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             argumentsOfScenario.Add("EndpointUrl", endpointUrl);
             argumentsOfScenario.Add("ResponseCode", responseCode);
+            argumentsOfScenario.Add("GetResponseCode", getResponseCode);
+            argumentsOfScenario.Add("GetExerciseId", getExerciseId);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Delete a lifting stat by a valid ID", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 11
 this.ScenarioInitialize(scenarioInfo);
@@ -128,26 +130,53 @@ this.ScenarioInitialize(scenarioInfo);
 this.FeatureBackground();
 #line hidden
 #line 12
- testRunner.When(string.Format("I send a \'DELETE\' request to \'{0}\' endpoint", endpointUrl), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+testRunner.When(string.Format("I send a \'POST\' request to \'{0}\' endpoint with payload", endpointUrl), "{\r\n\t\"liftingStatId\": 0,\r\n\t\"date\": \"2022-04-05\",\r\n\t\"weight\": 20,\r\n\t\"repetitions\": " +
+                        "10,\r\n\t\"exerciseId\": 1008\r\n}", ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 13
+#line 22
  testRunner.Then(string.Format("A \'{0}\' response is returned", responseCode), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+#line 23
+ testRunner.And("A response should contain the \'Location\' header", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 25
+ testRunner.When("I send a \'GET\' request to location of last response", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 26
+ testRunner.Then(string.Format("A \'{0}\' response is returned", getResponseCode), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+#line 27
+ testRunner.And(string.Format("A \'{0}\' exerciseId are retrieved", getExerciseId), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 29
+ testRunner.When("I send a \'DELETE\' request to location of last response", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 30
+ testRunner.Then("A \'204\' response is returned", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+#line 32
+ testRunner.When("I send a \'GET\' request to location of last response", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 33
+ testRunner.Then("A \'404\' response is returned", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Delete a lifting stat by a valid ID: /api/LiftingStats/35")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Delete a lifting stat by a valid ID: /api/LiftingStats/")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "DeleteExerciseById")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("getPositiveScenario")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "/api/LiftingStats/35")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:EndpointUrl", "/api/LiftingStats/35")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:ResponseCode", "204")]
-        public void DeleteALiftingStatByAValidID_ApiLiftingStats35()
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "/api/LiftingStats/")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:EndpointUrl", "/api/LiftingStats/")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:ResponseCode", "201")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:GetResponseCode", "200")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:GetExerciseId", "1008")]
+        public void DeleteALiftingStatByAValidID_ApiLiftingStats()
         {
 #line 11
-this.DeleteALiftingStatByAValidID("/api/LiftingStats/35", "204", ((string[])(null)));
+this.DeleteALiftingStatByAValidID("/api/LiftingStats/", "201", "200", "1008", ((string[])(null)));
 #line hidden
         }
         
@@ -165,7 +194,7 @@ this.DeleteALiftingStatByAValidID("/api/LiftingStats/35", "204", ((string[])(nul
             argumentsOfScenario.Add("ResponseCode", responseCode);
             argumentsOfScenario.Add("ResponseText", responseText);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Delete a lifting stat by a invalid ID", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 21
+#line 41
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -178,13 +207,13 @@ this.ScenarioInitialize(scenarioInfo);
 #line 7
 this.FeatureBackground();
 #line hidden
-#line 22
+#line 42
  testRunner.When(string.Format("I send a \'DELETE\' request to \'{0}\' endpoint", endpointUrl), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 23
+#line 43
  testRunner.Then(string.Format("A \'{0}\' response is returned", responseCode), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 24
+#line 44
  testRunner.And(string.Format("The response should contain \'{0}\'", responseText), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
@@ -201,7 +230,7 @@ this.FeatureBackground();
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:ResponseText", "Not Found")]
         public void DeleteALiftingStatByAInvalidID_ApiLiftingStats111()
         {
-#line 21
+#line 41
 this.DeleteALiftingStatByAInvalidID("api/LiftingStats/111", "404", "Not Found", ((string[])(null)));
 #line hidden
         }
@@ -216,7 +245,7 @@ this.DeleteALiftingStatByAInvalidID("api/LiftingStats/111", "404", "Not Found", 
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:ResponseText", "One or more validation errors occurred")]
         public void DeleteALiftingStatByAInvalidID_ApiLiftingStatsString()
         {
-#line 21
+#line 41
 this.DeleteALiftingStatByAInvalidID("api/LiftingStats/string", "400", "One or more validation errors occurred", ((string[])(null)));
 #line hidden
         }

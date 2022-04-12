@@ -22,6 +22,16 @@ namespace API.SpecflowTests.StepDefinitions
             _context = context;
         }
 
+        [BeforeScenario("Update an Exercise by a valid ID and payload")]
+        [When(@"I Insert Mock Data to '([^']*)'")]
+        public async Task WhenIInsertMockData(HttpMethod method, Uri uri, string payload)
+        {
+            GivenWeAreRunningTheAPIWithSampleData();
+            await WhenISendARequestToEndpointWithPayload(method, uri, payload);
+            ThenAResponseIsReturned(HttpStatusCode.OK);
+        }
+
+
         [Given(@"We are running the API with Sample Data")]
         public void GivenWeAreRunningTheAPIWithSampleData()
         {
@@ -51,6 +61,19 @@ namespace API.SpecflowTests.StepDefinitions
         public async Task WhenISendARequestToLocationOfLastResponse(HttpMethod method)
         {
             await WhenISendARequestToEndpoint(method, new Uri(_context!.LastHttpResponseMessageLocationHeaderValue!));
+        }
+
+        [When(@"I send a '([^']*)' request to location of last response with payload")]
+        public async Task WhenISendARequestToLocationOfLastResponseWithPayload(HttpMethod method, string payload)
+        {
+            var uri = new Uri(_context!.LastHttpResponseMessageLocationHeaderValue!);
+
+            HttpRequestMessage request = new HttpRequestMessage(method, uri)
+            {
+                Content = new StringContent(payload, encoding: Encoding.UTF8, mediaType: "application/json")
+            };
+
+            _context!.LastHttpResponseMessage = await _context!.HttpClient!.SendAsync(request);
         }
 
 
