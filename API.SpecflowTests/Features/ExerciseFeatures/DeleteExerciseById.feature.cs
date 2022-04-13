@@ -101,7 +101,7 @@ namespace API.SpecflowTests.Features.ExerciseFeatures
 #line hidden
         }
         
-        public virtual void DeleteAnExerciseByAValidID(string endpointUrl, string responseCode, string[] exampleTags)
+        public virtual void DeleteAnExerciseByAValidID(string endpointUrl, string responseCode, string getResponseCode, string getExerciseName, string[] exampleTags)
         {
             string[] @__tags = new string[] {
                     "getPositiveScenario"};
@@ -113,6 +113,8 @@ namespace API.SpecflowTests.Features.ExerciseFeatures
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             argumentsOfScenario.Add("EndpointUrl", endpointUrl);
             argumentsOfScenario.Add("ResponseCode", responseCode);
+            argumentsOfScenario.Add("GetResponseCode", getResponseCode);
+            argumentsOfScenario.Add("GetExerciseName", getExerciseName);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Delete an Exercise by a valid ID", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 11
 this.ScenarioInitialize(scenarioInfo);
@@ -128,40 +130,54 @@ this.ScenarioInitialize(scenarioInfo);
 this.FeatureBackground();
 #line hidden
 #line 12
- testRunner.When(string.Format("I send a \'DELETE\' request to \'{0}\' endpoint", endpointUrl), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When(string.Format("I send a \'POST\' request to \'{0}\' endpoint with payload", endpointUrl), "{\r\n  \"exerciseId\": 0,\r\n  \"name\": \"Push Press\",\r\n  \"stats\": [\r\n\t{\r\n\t  \"liftingStat" +
+                        "Id\": 0,\r\n\t  \"date\": \"2022-04-05\",\r\n\t  \"weight\": 100,\r\n\t  \"repetitions\": 3,\r\n\t  \"" +
+                        "exerciseId\": 0\r\n\t}\r\n  ]\r\n}", ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 13
+#line 28
  testRunner.Then(string.Format("A \'{0}\' response is returned", responseCode), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+#line 29
+ testRunner.And("A response should contain the \'Location\' header", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 31
+ testRunner.When("I send a \'GET\' request to location of last response", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 32
+ testRunner.Then(string.Format("A \'{0}\' response is returned", getResponseCode), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+#line 33
+ testRunner.And(string.Format("A \'{0}\' exercise details are retrieved", getExerciseName), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 35
+ testRunner.When("I send a \'DELETE\' request to location of last response", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 36
+ testRunner.Then("A \'204\' response is returned", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+#line 38
+ testRunner.When("I send a \'GET\' request to location of last response", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 39
+ testRunner.Then("A \'404\' response is returned", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Delete an Exercise by a valid ID: /api/Exercises/1011")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Delete an Exercise by a valid ID: /api/Exercises/")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "DeleteExerciseById")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("getPositiveScenario")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "/api/Exercises/1011")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:EndpointUrl", "/api/Exercises/1011")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:ResponseCode", "204")]
-        public void DeleteAnExerciseByAValidID_ApiExercises1011()
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "/api/Exercises/")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:EndpointUrl", "/api/Exercises/")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:ResponseCode", "201")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:GetResponseCode", "200")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:GetExerciseName", "Push Press")]
+        public void DeleteAnExerciseByAValidID_ApiExercises()
         {
 #line 11
-this.DeleteAnExerciseByAValidID("/api/Exercises/1011", "204", ((string[])(null)));
-#line hidden
-        }
-        
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Delete an Exercise by a valid ID: /api/Exercises/1012")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "DeleteExerciseById")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("getPositiveScenario")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "/api/Exercises/1012")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:EndpointUrl", "/api/Exercises/1012")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:ResponseCode", "204")]
-        public void DeleteAnExerciseByAValidID_ApiExercises1012()
-        {
-#line 11
-this.DeleteAnExerciseByAValidID("/api/Exercises/1012", "204", ((string[])(null)));
+this.DeleteAnExerciseByAValidID("/api/Exercises/", "201", "200", "Push Press", ((string[])(null)));
 #line hidden
         }
         
@@ -179,7 +195,7 @@ this.DeleteAnExerciseByAValidID("/api/Exercises/1012", "204", ((string[])(null))
             argumentsOfScenario.Add("ResponseCode", responseCode);
             argumentsOfScenario.Add("ResponseText", responseText);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Delete an Exercise by a invalid ID", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 21
+#line 46
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -192,13 +208,13 @@ this.ScenarioInitialize(scenarioInfo);
 #line 7
 this.FeatureBackground();
 #line hidden
-#line 22
+#line 47
  testRunner.When(string.Format("I send a \'DELETE\' request to \'{0}\' endpoint", endpointUrl), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 23
+#line 48
  testRunner.Then(string.Format("A \'{0}\' response is returned", responseCode), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 24
+#line 49
  testRunner.And(string.Format("The response should contain \'{0}\'", responseText), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
@@ -215,7 +231,7 @@ this.FeatureBackground();
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:ResponseText", "Not Found")]
         public void DeleteAnExerciseByAInvalidID_ApiExercises111()
         {
-#line 21
+#line 46
 this.DeleteAnExerciseByAInvalidID("api/Exercises/111", "404", "Not Found", ((string[])(null)));
 #line hidden
         }
@@ -230,7 +246,7 @@ this.DeleteAnExerciseByAInvalidID("api/Exercises/111", "404", "Not Found", ((str
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:ResponseText", "One or more validation errors occurred")]
         public void DeleteAnExerciseByAInvalidID_ApiExercisesNull()
         {
-#line 21
+#line 46
 this.DeleteAnExerciseByAInvalidID("api/Exercises/null", "400", "One or more validation errors occurred", ((string[])(null)));
 #line hidden
         }

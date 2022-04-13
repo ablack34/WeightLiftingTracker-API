@@ -12,13 +12,13 @@ Scenario: Update an Exercise by a valid ID and payload
 	When I send a 'PUT' request to '<EndpointUrl>' endpoint with payload
 	"""
 	{
-	  "exerciseId": 1007,
-	  "name": "Box jump",
+	  "exerciseId": 1020,
+	  "name": "Test Exercise",
 	  "stats": [
 		{
 		  "liftingStatId": 0,
 		  "date": "2022-04-05",
-		  "weight": 50,
+		  "weight": 100,
 		  "repetitions": 3,
 		  "exerciseId": 0
 		}
@@ -26,10 +26,24 @@ Scenario: Update an Exercise by a valid ID and payload
 	}
 	"""
 	Then A '<ResponseCode>' response is returned
+#	And A response should contain the 'Location' header
+#
+#	When I send a 'GET' request to location of last response
+#	Then A '<GetResponseCode>' response is returned
+#	And A '[int]' exerciseId are retrieved
+#	
+#	#How do I get the exerciseId of the newly created exercise so that I can update it
+#	#exerciseId is autoGen 
+#	#Internal Server Error if i try to set the exerciseId
+#
+#	When I send a 'PUT' request to location of last response
+#	Then A 'Test Exercise' exercise details are retrieved
+#	
+#	Then A '<PutResponseCode>' response is returned
 
 Examples: 
-	| EndpointUrl         | ResponseCode | 
-	| /api/Exercises/1007 | 202          | 
+	| EndpointUrl         | ResponseCode |
+	| /api/Exercises/1020 | 202          | 
 	
 
 @updateNegativeScenario

@@ -226,7 +226,7 @@ namespace TrackerAPI.Test
             var result = await controller.DeleteExercise(exerciseId);
 
             //Assert
-            Assert.IsType<NotFoundObjectResult>(result);
+            Assert.IsType<NotFoundResult>(result);
         }
 
     }

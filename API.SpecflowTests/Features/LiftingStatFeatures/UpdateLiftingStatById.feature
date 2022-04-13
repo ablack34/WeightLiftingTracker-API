@@ -23,7 +23,7 @@ Scenario: Update a lifting stat by a valid ID and payload
 
 Examples: 
 	| EndpointUrl            | ResponseCode | 
-	| /api/LiftingStats/16 | 202          | 
+	| /api/LiftingStats/16   | 202          | 
 	
 
 @updateNegativeScenario
