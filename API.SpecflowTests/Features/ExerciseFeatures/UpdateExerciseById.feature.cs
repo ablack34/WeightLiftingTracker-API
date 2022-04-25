@@ -101,7 +101,7 @@ namespace API.SpecflowTests.Features.ExerciseFeatures
 #line hidden
         }
         
-        public virtual void UpdateAnExerciseByAValidIDAndPayload(string endpointUrl, string responseCode, string[] exampleTags)
+        public virtual void UpdateAnExerciseByAValidIDAndPayload(string endpointUrl, string responseCode, string getResponseCode, string getExerciseName, string[] exampleTags)
         {
             string[] @__tags = new string[] {
                     "updatePositiveScenario"};
@@ -113,6 +113,8 @@ namespace API.SpecflowTests.Features.ExerciseFeatures
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             argumentsOfScenario.Add("EndpointUrl", endpointUrl);
             argumentsOfScenario.Add("ResponseCode", responseCode);
+            argumentsOfScenario.Add("GetResponseCode", getResponseCode);
+            argumentsOfScenario.Add("GetExerciseName", getExerciseName);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Update an Exercise by a valid ID and payload", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 11
 this.ScenarioInitialize(scenarioInfo);
@@ -127,13 +129,42 @@ this.ScenarioInitialize(scenarioInfo);
 #line 7
 this.FeatureBackground();
 #line hidden
-#line 12
- testRunner.When(string.Format("I send a \'PUT\' request to \'{0}\' endpoint with payload", endpointUrl), "{\r\n  \"exerciseId\": 1020,\r\n  \"name\": \"Test Exercise\",\r\n  \"stats\": [\r\n\t{\r\n\t  \"lifti" +
-                        "ngStatId\": 0,\r\n\t  \"date\": \"2022-04-05\",\r\n\t  \"weight\": 100,\r\n\t  \"repetitions\": 3," +
-                        "\r\n\t  \"exerciseId\": 0\r\n\t}\r\n  ]\r\n}", ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 30
+ testRunner.When(string.Format("I send a \'POST\' request to \'{0}\' endpoint with payload", endpointUrl), "{\r\n  \"exerciseId\": 0,\r\n  \"name\": \"Test Exercise\",\r\n  \"stats\": [\r\n\t{\r\n\t  \"liftingS" +
+                        "tatId\": 0,\r\n\t  \"date\": \"2022-04-05\",\r\n\t  \"weight\": 100,\r\n\t  \"repetitions\": 3,\r\n\t" +
+                        "  \"exerciseId\": 0\r\n\t}\r\n  ]\r\n}", ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 28
+#line 46
  testRunner.Then(string.Format("A \'{0}\' response is returned", responseCode), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+#line 47
+ testRunner.And("A response should contain the \'Location\' header", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 49
+ testRunner.When("I send a \'GET\' request to location of last response", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 50
+ testRunner.Then(string.Format("A \'{0}\' response is returned", getResponseCode), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+#line 51
+ testRunner.And(string.Format("A \'{0}\' exercise details are retrieved", getExerciseName), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 53
+ testRunner.When("I send a \'PUT\' request to location of last response with payload", "{\r\n  \"exerciseId\": 0,\r\n  \"name\": \"Test Exercise Updated\",\r\n  \"stats\": [\r\n\t{\r\n\t  \"" +
+                        "liftingStatId\": 0,\r\n\t  \"date\": \"2022-04-05\",\r\n\t  \"weight\": 100,\r\n\t  \"repetitions" +
+                        "\": 3,\r\n\t  \"exerciseId\": 0\r\n\t}\r\n  ]\r\n}", ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 69
+ testRunner.Then("A \'202\' response is returned", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+#line 71
+ testRunner.When("I send a \'GET\' request to location of last response", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 72
+ testRunner.Then(string.Format("A \'{0}\' response is returned", getResponseCode), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+#line 73
+ testRunner.And(string.Format("A \'{0}\' exercise details are retrieved", getExerciseName), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();
@@ -145,11 +176,13 @@ this.FeatureBackground();
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("updatePositiveScenario")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "/api/Exercises/1020")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:EndpointUrl", "/api/Exercises/1020")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:ResponseCode", "202")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:ResponseCode", "201")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:GetResponseCode", "200")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:GetExerciseName", "Test Exercise Updated")]
         public void UpdateAnExerciseByAValidIDAndPayload_ApiExercises1020()
         {
 #line 11
-this.UpdateAnExerciseByAValidIDAndPayload("/api/Exercises/1020", "202", ((string[])(null)));
+this.UpdateAnExerciseByAValidIDAndPayload("/api/Exercises/1020", "201", "200", "Test Exercise Updated", ((string[])(null)));
 #line hidden
         }
         
@@ -167,7 +200,7 @@ this.UpdateAnExerciseByAValidIDAndPayload("/api/Exercises/1020", "202", ((string
             argumentsOfScenario.Add("ResponseCode", responseCode);
             argumentsOfScenario.Add("ResponseText", responseText);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Update an Exercise by a invalid ID", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 50
+#line 92
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -180,15 +213,15 @@ this.ScenarioInitialize(scenarioInfo);
 #line 7
 this.FeatureBackground();
 #line hidden
-#line 51
+#line 93
  testRunner.When(string.Format("I send a \'PUT\' request to \'{0}\' endpoint with payload", endpointUrl), "{\r\n  \"exerciseId\": 111,\r\n  \"name\": \"Push-up\",\r\n  \"stats\": [\r\n\t{\r\n\t  \"liftingStatI" +
                         "d\": 0,\r\n\t  \"date\": \"2022-04-05\",\r\n\t  \"weight\": 50,\r\n\t  \"repetitions\": 3,\r\n\t  \"ex" +
                         "erciseId\": 0\r\n\t}\r\n  ]\r\n}", ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 67
+#line 109
  testRunner.Then(string.Format("A \'{0}\' response is returned", responseCode), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 68
+#line 110
  testRunner.And(string.Format("The response should contain \'{0}\'", responseText), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
@@ -205,7 +238,7 @@ this.FeatureBackground();
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:ResponseText", "Bad Request")]
         public void UpdateAnExerciseByAInvalidID_ApiExercises1007()
         {
-#line 50
+#line 92
 this.UpdateAnExerciseByAInvalidID("/api/Exercises/1007", "400", "Bad Request", ((string[])(null)));
 #line hidden
         }
@@ -218,7 +251,7 @@ this.UpdateAnExerciseByAInvalidID("/api/Exercises/1007", "400", "Bad Request", (
             argumentsOfScenario.Add("ResponseCode", responseCode);
             argumentsOfScenario.Add("ResponseText", responseText);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Update an Exercise by a invalid payload", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 75
+#line 117
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -231,15 +264,15 @@ this.ScenarioInitialize(scenarioInfo);
 #line 7
 this.FeatureBackground();
 #line hidden
-#line 76
+#line 118
  testRunner.When(string.Format("I send a \'PUT\' request to \'{0}\' endpoint with payload", endpointUrl), "{\r\n  \"exerciseId\": 1007,\r\n  \"name\": \"Push-up\",\r\n  \"stats\": [\r\n\t{\r\n\t  \"liftingStat" +
                         "Id\": 0,\r\n\t  \"date\": \"2022-04-05\",\r\n\t  \"weight\": \"INVALID_DATA\",\r\n\t  \"repetitions" +
                         "\": 3,\r\n\t  \"exerciseId\": 0\r\n\t}\r\n  ]\r\n}", ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 92
+#line 134
  testRunner.Then(string.Format("A \'{0}\' response is returned", responseCode), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 93
+#line 135
  testRunner.And(string.Format("The response should contain \'{0}\'", responseText), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
@@ -255,7 +288,7 @@ this.FeatureBackground();
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:ResponseText", "One or more validation errors")]
         public void UpdateAnExerciseByAInvalidPayload_ApiExercises1007()
         {
-#line 75
+#line 117
 this.UpdateAnExerciseByAInvalidPayload("/api/Exercises/1007", "400", "One or more validation errors", ((string[])(null)));
 #line hidden
         }
@@ -268,7 +301,7 @@ this.UpdateAnExerciseByAInvalidPayload("/api/Exercises/1007", "400", "One or mor
             argumentsOfScenario.Add("ResponseCode", responseCode);
             argumentsOfScenario.Add("ResponseText", responseText);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Update an Exercise by a invalid route", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 99
+#line 141
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -281,15 +314,15 @@ this.ScenarioInitialize(scenarioInfo);
 #line 7
 this.FeatureBackground();
 #line hidden
-#line 100
+#line 142
  testRunner.When(string.Format("I send a \'PUT\' request to \'{0}\' endpoint with payload", endpointUrl), "{\r\n  \"exerciseId\": 1007,\r\n  \"name\": \"Push-up\",\r\n  \"stats\": [\r\n\t{\r\n\t  \"liftingStat" +
                         "Id\": 0,\r\n\t  \"date\": \"2022-04-05\",\r\n\t  \"weight\": 50,\r\n\t  \"repetitions\": 3,\r\n\t  \"e" +
                         "xerciseId\": 0\r\n\t}\r\n  ]\r\n}", ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 116
+#line 158
  testRunner.Then(string.Format("A \'{0}\' response is returned", responseCode), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 117
+#line 159
  testRunner.And(string.Format("The response should contain \'{0}\'", responseText), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
@@ -305,7 +338,7 @@ this.FeatureBackground();
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:ResponseText", "Bad Request")]
         public void UpdateAnExerciseByAInvalidRoute_ApiExercises111()
         {
-#line 99
+#line 141
 this.UpdateAnExerciseByAInvalidRoute("/api/Exercises/111", "400", "Bad Request", ((string[])(null)));
 #line hidden
         }

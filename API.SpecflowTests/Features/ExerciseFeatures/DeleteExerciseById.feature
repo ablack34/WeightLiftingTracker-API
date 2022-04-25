@@ -13,7 +13,7 @@ Scenario: Delete an Exercise by a valid ID
 	"""
 	{
 	  "exerciseId": 0,
-	  "name": "Push Press",
+	  "name": "Test",
 	  "stats": [
 		{
 		  "liftingStatId": 0,
@@ -38,9 +38,9 @@ Scenario: Delete an Exercise by a valid ID
 	When I send a 'GET' request to location of last response
 	Then A '404' response is returned
 
-Examples: 
+Examples:
 	| EndpointUrl         | ResponseCode | GetResponseCode | GetExerciseName |
-	| /api/Exercises/	  | 201          | 200             | Push Press      |
+	| /api/Exercises/	  | 201          | 200             | Test			 |
 
 @getNegativeScenario
 Scenario: Delete an Exercise by a invalid ID

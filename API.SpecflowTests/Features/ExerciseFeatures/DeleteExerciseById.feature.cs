@@ -130,9 +130,9 @@ this.ScenarioInitialize(scenarioInfo);
 this.FeatureBackground();
 #line hidden
 #line 12
- testRunner.When(string.Format("I send a \'POST\' request to \'{0}\' endpoint with payload", endpointUrl), "{\r\n  \"exerciseId\": 0,\r\n  \"name\": \"Push Press\",\r\n  \"stats\": [\r\n\t{\r\n\t  \"liftingStat" +
-                        "Id\": 0,\r\n\t  \"date\": \"2022-04-05\",\r\n\t  \"weight\": 100,\r\n\t  \"repetitions\": 3,\r\n\t  \"" +
-                        "exerciseId\": 0\r\n\t}\r\n  ]\r\n}", ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When(string.Format("I send a \'POST\' request to \'{0}\' endpoint with payload", endpointUrl), "{\r\n  \"exerciseId\": 0,\r\n  \"name\": \"Test\",\r\n  \"stats\": [\r\n\t{\r\n\t  \"liftingStatId\": 0" +
+                        ",\r\n\t  \"date\": \"2022-04-05\",\r\n\t  \"weight\": 100,\r\n\t  \"repetitions\": 3,\r\n\t  \"exerci" +
+                        "seId\": 0\r\n\t}\r\n  ]\r\n}", ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 28
  testRunner.Then(string.Format("A \'{0}\' response is returned", responseCode), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
@@ -173,11 +173,11 @@ this.FeatureBackground();
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:EndpointUrl", "/api/Exercises/")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:ResponseCode", "201")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:GetResponseCode", "200")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:GetExerciseName", "Push Press")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:GetExerciseName", "Test")]
         public void DeleteAnExerciseByAValidID_ApiExercises()
         {
 #line 11
-this.DeleteAnExerciseByAValidID("/api/Exercises/", "201", "200", "Push Press", ((string[])(null)));
+this.DeleteAnExerciseByAValidID("/api/Exercises/", "201", "200", "Test", ((string[])(null)));
 #line hidden
         }
         
