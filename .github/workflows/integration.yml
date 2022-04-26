@@ -22,10 +22,4 @@ jobs:
     - name: Build
       run: dotnet build --no-restore
     - name: Test
-      uses: zyborg/dotnet-tests-report@v1
-      with:
-        project_path: WeightLiftingTracker-API\TrackerAPI.Test
-        report_name: my_project_unit_tests
-        report_title: My Project Unit Tests
-        set_check_status_from_test_outcome: true
-        
+      run: dotnet test ~/WeightLiftingTracker-API\TrackerAPI.Test
