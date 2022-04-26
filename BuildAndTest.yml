@@ -33,18 +33,21 @@ variables:
       msbuildArgs: '/p:DeployOnBuild=true /p:WebPublishMethod=Package /p:PackageAsSingleFile=true /p:SkipInvalidConfigurations=true /p:DesktopBuildPackageLocation="$(build.artifactStagingDirectory)\WebApp.zip" /p:DeployIisAppPath="Default Web Site"'
       platform: '$(buildPlatform)'
       configuration: '$(buildConfiguration)'
-  - task: VSTest@2
+
+  - stage: Test
+    jobs:
+    - job: Test
+
+  - task: DotNetCoreCLI@2
     inputs:
-      testAssemblyVer2: |
-        **\API.SpecflowTests.dll
-        !**\obj\**
-      platform: '$(buildPlatform)'
-      configuration: '$(buildConfiguration)'
+      command: 'test'
+      projects: '**/*.Test.csproj'
+      testRunTitle: 'Unit Tests'
 
   - task: SpecFlowPlus@0
     inputs:
-      projectFilePath: '$(System.DefaultWorkingDirectory)'
-      projectLanguage: 'en'
+      generatorSource: 'FeatureFolder'
+      projectFilePath: 'API.SpecflowTests'
 
   - task: DotNetCoreCLI@2
     displayName: 'Run unit tests - $(buildConfiguration)'
