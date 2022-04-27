@@ -43,7 +43,7 @@ stages:
 
 - stage: Test
   jobs:
-  - job: SpecflowTests
+  - job: RunTests
 
   pool:
     vmImage: 'windows-latest'
@@ -54,10 +54,4 @@ stages:
     - task: DotNetCoreCLI@2
       inputs:
         command: 'test'
-        projects: '**/*.csproj'
-        testRunTitle: 'Tests'
-
-    - task: SpecFlowPlus@0
-      inputs:
-        generatorSource: 'FeatureFolder'
-        projectFilePath: 'API.SpecflowTests'
+        projects: '''**/TrackerAPI.Test/*.csproj'''
