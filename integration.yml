@@ -47,6 +47,13 @@ stages:
 
     steps:
       - task: DotNetCoreCLI@2
+        displayName: Unit Tests
         inputs:
           command: 'test'
           projects: '**/TrackerAPI.Test/*.csproj'
+      
+      - task: DotNetCoreCLI@2
+        displayName: Specflow Tests
+        inputs:
+          command: 'test'
+          projects: '**/API.SpecflowTests/*.csproj'
