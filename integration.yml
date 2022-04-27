@@ -45,13 +45,8 @@ stages:
   jobs:
   - job: RunTests
 
-  pool:
-    vmImage: 'windows-latest'
-
-    environment: 'Test'
-
     steps:
-    - task: DotNetCoreCLI@2
-      inputs:
-        command: 'test'
-        projects: '''**/TrackerAPI.Test/*.csproj'''
+      - task: DotNetCoreCLI@2
+        inputs:
+          command: 'test'
+          projects: '**/TrackerAPI.Test/*.csproj'
