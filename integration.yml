@@ -8,44 +8,56 @@ trigger:
     include:
     - main
 
-#pr:
- # branches:
-  #  include:
-   #  - main
-
-
-pool:
-  vmImage: 'windows-latest'
-
 variables:
   solution: '**/*.sln'
   buildPlatform: 'Any CPU'
   buildConfiguration: 'Release'
 
-steps:
-- task: NuGetToolInstaller@1
+stages:
+- stage: Build
+  jobs:
+  - job: Build
 
-- task: NuGetCommand@2
-  inputs:
-    restoreSolution: '$(solution)'
+    pool:
+      vmImage: 'windows-latest'
 
-- task: VSBuild@1
-  inputs:
-    solution: '$(solution)'
-    msbuildArgs: '/p:DeployOnBuild=true /p:WebPublishMethod=Package /p:PackageAsSingleFile=true /p:SkipInvalidConfigurations=true /p:DesktopBuildPackageLocation="$(build.artifactStagingDirectory)\WebApp.zip" /p:DeployIisAppPath="Default Web Site"'
-    platform: '$(buildPlatform)'
-    configuration: '$(buildConfiguration)'
+    steps:
+    - task: NuGetToolInstaller@1
 
-- task: SpecFlowPlus@0
-  inputs:
-    generatorSource: 'FeatureFolder'
-    projectFilePath: 'API.SpecflowTests'
+    - task: NuGetCommand@2
+      inputs:
+        restoreSolution: '$(solution)'
 
-- task: DotNetCoreCLI@2
-  displayName: 'Run Unit Tests - $(buildConfiguration)'
-  inputs:
-    command: 'test'
-    arguments: '--no-build --configuration $(buildConfiguration)'
-    publishTestResults: true
-    projects: '**/*.Tests.csproj'
+    - task: VSBuild@1
+      inputs:
+        solution: '$(solution)'
+        msbuildArgs: '/p:DeployOnBuild=true /p:WebPublishMethod=Package /p:PackageAsSingleFile=true /p:SkipInvalidConfigurations=true /p:DesktopBuildPackageLocation="$(build.artifactStagingDirectory)\WebApp.zip" /p:DeployIisAppPath="Default Web Site"'
+        platform: '$(buildPlatform)'
+        configuration: '$(buildConfiguration)'
 
+    - task: PublishBuildArtifacts@1
+      inputs:
+        PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+        ArtifactName: 'drop'
+        publishLocation: 'Container'
+
+- stage: Test
+  jobs:
+  - job: SpecflowTests
+
+  pool:
+    vmImage: 'windows-latest'
+
+    environment: 'Test'
+
+    steps:
+    - task: DotNetCoreCLI@2
+      inputs:
+        command: 'test'
+        projects: '**/*.csproj'
+        testRunTitle: 'Tests'
+
+    - task: SpecFlowPlus@0
+      inputs:
+        generatorSource: 'FeatureFolder'
+        projectFilePath: 'API.SpecflowTests'
