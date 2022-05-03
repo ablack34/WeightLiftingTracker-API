@@ -15,6 +15,12 @@ variables:
 
 stages:
 
+#build
+- template: pipeline-templates/build.yml
+
+#Test
+- template: pipeline-templates/test.yml
+
 #Lint the Bicep file
 - stage: Lint
   jobs:
