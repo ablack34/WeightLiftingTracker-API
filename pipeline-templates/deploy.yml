@@ -26,7 +26,7 @@ stages:
             inlineScript: |
               az deployment group validate \
                 --resource-group ${{parameters.resourceGroupName}} \
-                --template-file deploy/main.bicep \
+                --template-file WeightLiftingTrackerAPI/IaCTemplates/WebApp/main.bicep \
                 --parameters environmentType=${{parameters.environmentType}}
 
 - ${{ if eq(parameters.environmentType, 'Production') }}:
@@ -46,7 +46,7 @@ stages:
             inlineScript: |
               az deployment group what-if \
                 --resource-group ${{parameters.resourceGroupName}} \
-                --template-file deploy/main.bicep \
+                --template-file WeightLiftingTrackerAPI/IaCTemplates/WebApp/main.bicep \
                 --parameters environmentType=${{parameters.environmentType}}
 
 - stage: Deploy_${{parameters.environmentType}}
@@ -72,7 +72,7 @@ stages:
                   deploymentOutput=$(az deployment group create \
                     --name $(Build.BuildNumber) \
                     --resource-group ${{parameters.resourceGroupName}} \
-                    --template-file deploy/main.bicep \
+                    --template-file WeightLiftingTrackerAPI/IaCTemplates/WebApp/main.bicep \
                     --parameters environmentType=${{parameters.environmentType}})
                   appServiceAppHostName=$(echo $deploymentOutput | jq -r '.properties.outputs.appServiceAppHostName.value')
                   echo "##vso[task.setvariable variable=appServiceAppHostName;isOutput=true]$appServiceAppHostName"
