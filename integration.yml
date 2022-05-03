@@ -30,7 +30,7 @@ stages:
 #Deploy to production environment
 - template: pipeline-templates/deploy.yml
   parameters:
-    environmentType: Prod
+    environmentType: Production
     resourceGroupName: TrackerAPI-Prod
     serviceConnectionName: TrackerAPI-Prod
 

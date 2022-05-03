@@ -3,6 +3,6 @@ jobs:
   displayName: Lint code
   steps:
     - script: |
-        az bicep build --file WeightLiftingTracker-API\WeightLiftingTrackerAPI\IaCTemplates\WebApp\main.bicep
+        az bicep build --file WeightLiftingTrackerAPI/IaCTemplates/WebApp/main.bicep
       name: LintBicepCode
       displayName: Run Bicep linter
