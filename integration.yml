@@ -14,46 +14,69 @@ variables:
   buildConfiguration: 'Release'
 
 stages:
-- stage: Build
+
+#Lint the Bicep file
+- stage: Lint
   jobs:
-  - job: Build
+  - template: pipeline-templates/lint.yml
 
-    pool:
-      vmImage: 'windows-latest'
+#Deploy to test environment
+- template: pipeline-templates/deploy.yml
+  parameters:
+    environmentType: Test
+    resourceGroupName: TrackerAPI-Test
+    serviceConnectionName: TrackerAPI-Test
 
-    steps:
-    - task: NuGetToolInstaller@1
+#Deploy to production environment
+- template: pipeline-templates/deploy.yml
+  parameters:
+    environmentType: Prod
+    resourceGroupName: TrackerAPI-Prod
+    serviceConnectionName: TrackerAPI-Prod
 
-    - task: NuGetCommand@2
-      inputs:
-        restoreSolution: '$(solution)'
 
-    - task: VSBuild@1
-      inputs:
-        solution: '$(solution)'
-        msbuildArgs: '/p:DeployOnBuild=true /p:WebPublishMethod=Package /p:PackageAsSingleFile=true /p:SkipInvalidConfigurations=true /p:DesktopBuildPackageLocation="$(build.artifactStagingDirectory)\WebApp.zip" /p:DeployIisAppPath="Default Web Site"'
-        platform: '$(buildPlatform)'
-        configuration: '$(buildConfiguration)'
 
-    - task: PublishBuildArtifacts@1
-      inputs:
-        PathtoPublish: '$(Build.ArtifactStagingDirectory)'
-        ArtifactName: 'drop'
-        publishLocation: 'Container'
 
-- stage: Test
-  jobs:
-  - job: RunTests
+# - stage: Build
+#   jobs:
+#   - job: Build
 
-    steps:
-      - task: DotNetCoreCLI@2
-        displayName: Unit Tests
-        inputs:
-          command: 'test'
-          projects: '**/TrackerAPI.Test/*.csproj'
+#     pool:
+#       vmImage: 'windows-latest'
+
+#     steps:
+#     - task: NuGetToolInstaller@1
+
+#     - task: NuGetCommand@2
+#       inputs:
+#         restoreSolution: '$(solution)'
+
+#     - task: VSBuild@1
+#       inputs:
+#         solution: '$(solution)'
+#         msbuildArgs: '/p:DeployOnBuild=true /p:WebPublishMethod=Package /p:PackageAsSingleFile=true /p:SkipInvalidConfigurations=true /p:DesktopBuildPackageLocation="$(build.artifactStagingDirectory)\WebApp.zip" /p:DeployIisAppPath="Default Web Site"'
+#         platform: '$(buildPlatform)'
+#         configuration: '$(buildConfiguration)'
+
+#     - task: PublishBuildArtifacts@1
+#       inputs:
+#         PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+#         ArtifactName: 'drop'
+#         publishLocation: 'Container'
+
+# - stage: Test
+#   jobs:
+#   - job: RunTests
+
+#     steps:
+#       - task: DotNetCoreCLI@2
+#         displayName: Unit Tests
+#         inputs:
+#           command: 'test'
+#           projects: '**/TrackerAPI.Test/*.csproj'
       
-      - task: DotNetCoreCLI@2
-        displayName: Specflow Tests
-        inputs:
-          command: 'test'
-          projects: '**/API.SpecflowTests/*.csproj'
+#       - task: DotNetCoreCLI@2
+#         displayName: Specflow Tests
+#         inputs:
+#           command: 'test'
+#           projects: '**/API.SpecflowTests/*.csproj' 
