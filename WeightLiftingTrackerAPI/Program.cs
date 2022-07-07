@@ -12,7 +12,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddDbContext<ExerciseContext>(opt =>
-    opt.UseSqlServer(builder.Configuration.GetConnectionString("StatsDB")));
+    opt.UseSqlServer(builder.Configuration.GetConnectionString("ExerciseDB")));
 
 builder.Services.AddScoped<IExerciseRepository, ExerciseRepository>();
 
